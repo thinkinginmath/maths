@@ -1,0 +1,43 @@
+\documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+\usepackage{tikz,tkz-euclide}
+\usetkzobj{all}
+
+\usetikzlibrary{arrows.meta,intersections,calc}
+
+\tikzset{
+    mynode/.style={circle,fill=black,inner sep=0pt,minimum size=3pt},
+}
+\begin{document}
+
+\begin{tikzpicture}[scale=1.25]%,cap=round,>=latex]
+
+\coordinate [label=left:$B$] (B) at (0, 0);
+\coordinate [label=right:$C$] (C) at (4, 0);
+\coordinate [label=above:$A$] (A) at (2, 7.46);
+\coordinate [label=below:$D$] (D) at (2, 0);
+
+\coordinate [label=right:$E$] (E) at (3.73, 1.0);
+
+\draw (A) -- node[midway,left] {$x$} (B) -- (C) -- node[midway,right] {$x$}  (A);
+\draw [blue, thick] (A) -- (D);
+\draw [blue,thick] (0,0) -- (15:3.85);
+
+\draw[red, thick] (A) +(-75:0.8cm) arc (-75:-90:0.8cm) node[midway, below] {$\alpha$};;
+\draw[red, thick] (A) +(-105:1.0cm) arc (-105:-86:0.8cm) node[midway, below] {$\alpha$};;
+
+\draw[red, thick] (B) +(15:0.4cm) arc (15:75:0.4cm)
+node[midway, right]{$60^{\circ}$};
+
+\draw[red, thick] (B) +(0:0.5cm) arc (0:15:0.5cm) node[midway, right] {$\alpha$};
+
+\tkzFindAngle(B,E,A)
+    \tkzGetAngle{angleBEA};
+    \tkzMarkRightAngle[draw=blue,size=.3](B,E,A);
+    
+\tkzFindAngle(A,D,C)
+    \tkzGetAngle{angleADC};
+    \tkzMarkRightAngle[draw=blue,size=.3](A,D,C);
+\end{tikzpicture}
+
+\end{document}
+
